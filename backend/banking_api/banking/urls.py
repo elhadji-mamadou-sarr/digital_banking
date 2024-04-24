@@ -2,6 +2,9 @@ from django.urls import path
 from .views import (DetailApiView, CreateApiView, UpdateApiView, 
                     DeleteApiView, ListAccountView)
 from banking_inscription.views import UserListView, UserCreateView, UserDetailView
+from .deposit_view import deposit_view
+from .withdrawl_view import withdraw_view
+
 
 urlpatterns = [
     
@@ -16,5 +19,6 @@ urlpatterns = [
     path('users/create', UserCreateView.as_view()),
     path('users/<int:pk>', UserDetailView.as_view()),
     
-    
+    path('<int:pk>/deposit', deposit_view),
+    path('<int:pk>/withdraw', withdraw_view),
 ]

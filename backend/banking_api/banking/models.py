@@ -11,4 +11,4 @@ class BankAccount(models.Model):
     
     @property
     def get_balance(self):
-        return "%.2f"%(float(self.solde) * 0.5)
+        return "%.2f"%(float(self.solde))
