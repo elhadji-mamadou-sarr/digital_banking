@@ -1,11 +1,10 @@
 import requests
 
-endpoint = "http://127.0.0.1:8081/comptes"
+endpoint = "http://127.0.0.1:8081/login"
 #response = requests.get(endpoint)
 response = requests.post(endpoint, json={
-        "numero_compte": 101,
-        "client": 2,
-        "solde": 0.00,})
+        "username": "elhadji            ",
+        "password": "elhadjisarr",})
 
 print(response.json())
 
