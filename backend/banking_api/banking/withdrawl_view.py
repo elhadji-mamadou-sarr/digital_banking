@@ -13,18 +13,16 @@ def withdraw_view(request, pk):
         return Response({'detail': 'Compte introuvable'}, status=status.HTTP_404_NOT_FOUND)
 
     # Extraire le montant du request.data['amount']
-    amount_list = request.data.getlist('amount', [])
+    amount_list = request.data.get('amount')
     
     if not amount_list:
         return Response({'detail': 'Montant invalide'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Convertir la première valeur de la liste en Decimal
     try:
-        amount = Decimal(amount_list[0])
+        amount = Decimal(amount_list)
     except ValueError:
         return Response({'detail': 'Montant invalide'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Vérifier si le solde est suffisant pour le retrait
     if account.solde < amount:
         return Response({'detail': 'Solde insuffisant'}, status=status.HTTP_400_BAD_REQUEST)
 

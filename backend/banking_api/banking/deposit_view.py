@@ -12,7 +12,7 @@ def deposit_view(request, pk):
     except BankAccount.DoesNotExist:
         return Response({'detail': 'Compte introuvable'}, status=status.HTTP_404_NOT_FOUND)
 
-    amount_list = request.data.getlist('amount', [])
+    amount_list = request.data.get('amount')
     
     if not amount_list:
         return Response({'detail': 'Montant invalide'}, status=status.HTTP_400_BAD_REQUEST)

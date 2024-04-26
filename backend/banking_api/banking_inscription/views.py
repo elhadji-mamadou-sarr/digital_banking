@@ -45,3 +45,14 @@ class UserDeleteView(generics.DestroyAPIView):
         instance = self.get_object()
         self.perform_destroy(instance)
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+    
+@api_view(['GET'])
+def inactive_users_view(request):
+    
+    inactive_users = User.objects.filter(is_active=False)
+
+    # Serializer la liste des utilisateurs inactifs
+    serialized_users = [{'id': user.id, 'username': user.first_name, 'username': user.last_name, 'email': user.email} for user in inactive_users]
+
+    return Response(serialized_users, status=status.HTTP_200_OK)

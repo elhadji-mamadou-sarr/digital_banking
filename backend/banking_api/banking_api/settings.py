@@ -40,9 +40,12 @@ INSTALLED_APPS = [
     'banking',
     'api',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -72,6 +75,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'banking_api.wsgi.application'
 
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:4200',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

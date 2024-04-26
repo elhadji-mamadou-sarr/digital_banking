@@ -6,10 +6,17 @@ from rest_framework import generics
 from .serializer import BankAccountSerializer, UserSerializer
 from rest_framework import status 
 from django.contrib.auth.models import User
+from .filters import BankAccountFilter
+from rest_framework.filters import OrderingFilter
+import django_filters
+
 
 class ListAccountView(generics.ListAPIView):
   queryset = BankAccount.objects.all()
   serializer_class = BankAccountSerializer
+  filter_backends = [django_filters.rest_framework.DjangoFilterBackend, OrderingFilter]
+  filterset_class = BankAccountFilter
+  ordering_fields = ['numero_compte'] 
 
 class DetailApiView(generics.RetrieveAPIView):
   queryset = BankAccount.objects.all()

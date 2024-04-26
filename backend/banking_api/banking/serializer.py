@@ -6,7 +6,7 @@ class BankAccountSerializer(serializers.ModelSerializer):
     my_balance = serializers.SerializerMethodField(read_only = True)
     class Meta:
         model = BankAccount
-        fields = ('numero_compte', 'client', 'solde', 'my_balance')
+        fields = ('id', 'numero_compte', 'client', 'solde', 'my_balance')
         
     def get_my_balance(self, obj):
         
